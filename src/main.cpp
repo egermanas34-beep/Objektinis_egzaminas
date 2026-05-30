@@ -7,8 +7,6 @@ int main()
     SetConsoleCP(CP_UTF8);
     map<string, Word> zodziai;
     nuskaitymas("tekstas.txt", zodziai);
-    
-    
     isvedimas(zodziai);
     return 0;
 }
