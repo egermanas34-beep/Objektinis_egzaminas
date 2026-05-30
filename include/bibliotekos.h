@@ -9,3 +9,5 @@
 
 using std::string;
 using std::map;
+using std::isalpha;
+using std::tolower;
