@@ -1,4 +1,4 @@
-#pragma once
+
 #include "word.h"
 
 Word::Word()

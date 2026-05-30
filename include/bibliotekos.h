@@ -13,3 +13,6 @@ using std::isalpha;
 using std::tolower;
 using std::ifstream;
 using std::cout;
+using std::endl;
+using std::ofstream;
+using std::ispunct;
