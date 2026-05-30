@@ -7,7 +7,7 @@ Word::Word()
     count = 0;
 }
 
-Word::Word(const std::string& word, int count)
+Word::Word(const string& word, int count)
 {
     this->word = word;
     this->count = count;
