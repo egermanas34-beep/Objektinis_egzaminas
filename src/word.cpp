@@ -49,3 +49,8 @@ Word::~Word()
     word.clear();
     count = 0;
 }
+std::ostream& operator<<(std::ostream& os, const Word& zodis)
+{
+    os << zodis.getWord() << ": " << zodis.getCount();
+    return os;
+}

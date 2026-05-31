@@ -20,4 +20,6 @@ class Word
     void setWord(const string& word) {this->word = word;};
     void setCount(int count) {this->count = count;};
     
+    void didintiCount() {this->count++;};
+    friend std::ostream& operator<<(std::ostream& os, const Word& zodis);
 };

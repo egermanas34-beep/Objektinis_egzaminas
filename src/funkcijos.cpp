@@ -64,7 +64,7 @@ void nuskaitymas(const string& failas, map<string,Word>& zodziai)
         } else {
             //jei zodis jau yra, tai padidiname count reiksme
             zodziai[tuscia].setWord(tuscia);
-            zodziai[tuscia].setCount(zodziai[tuscia].getCount() + 1);
+            zodziai[tuscia].didintiCount();
         }
     }
     fr.close();
@@ -80,10 +80,10 @@ void isvedimas(const map<string, Word>& zodziai)
     }
     for(const auto& pora : zodziai)
     {
-        if(pora.second.getCount() >= 1) //isvedame tik tuos zodzius, kurie pasikartoja daugiau nei 1 karta
+        if(pora.second.getCount() > 1) //isvedame tik tuos zodzius, kurie pasikartoja daugiau nei 1 karta
         {
-            fd << pora.second.getWord() << ": " << pora.second.getCount() << std::endl;
-            cout << "[" << pora.first << "] = " << pora.second.getWord() << ": " << pora.second.getCount() << "\n";
+            fd << pora.second << std::endl;
+            cout << " raktas [" << pora.first << "] = zodis : " << pora.second.getWord() << ", skaicius: " << pora.second.getCount() << "\n";
         }
     }
     fd.close();
