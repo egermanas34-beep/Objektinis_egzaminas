@@ -74,3 +74,5 @@ Testing/
 
 # google test
 googletest/
+#doxyman
+doxyman/

@@ -1,6 +1,6 @@
 #include "urlfinder.h"
 
-bool UrlFinder::arURL(const string& zodis)
+bool UrlFinder::arURL(const string& zodis) //! funkcija, kuri patikrina ar zodis yra URL adresas
 {
     return zodis.rfind("https://", 0) == 0 ||
             zodis.rfind("http://", 0) == 0 ||
@@ -10,10 +10,10 @@ bool UrlFinder::arURL(const string& zodis)
             zodis.find(".net") != string::npos ||
             zodis.find(".org") != string::npos;
 }
-string UrlFinder::sutvarkytiURL(const string& zodis)
+string UrlFinder::sutvarkytiURL(const string& zodis) //! funkcija, kuri pašalina galimus skyrybos ženklus iš URL pradžios ir pabaigos
 {
     string sutvarkytasURL = zodis;
-    // Pašaliname galimus skyrybos ženklus iš URL pradžios ir pabaigos
+    //! Pašaliname galimus skyrybos ženklus iš URL pradžios ir pabaigos
     while (!sutvarkytasURL.empty() &&
         (sutvarkytasURL.back() == '.' ||
          sutvarkytasURL.back() == ',' ||
@@ -46,7 +46,7 @@ string UrlFinder::sutvarkytiURL(const string& zodis)
     }
     return sutvarkytasURL;
 }
-void UrlFinder::nuskaitymas(const string& failas)
+void UrlFinder::nuskaitymas(const string& failas) //! funkcija, kuri skaito faila ir iesko URL adresu
 {
     ifstream fr(failas);
     if(!fr.is_open())
