@@ -72,4 +72,4 @@ Testing/
 *.txt
 
 # google test
-google/
+googletest/
