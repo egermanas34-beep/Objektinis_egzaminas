@@ -77,4 +77,5 @@ void UrlFinder::isvedimas(const string& failas)
     {
         fd << url << endl;
     }
+    fd.close();
 }
