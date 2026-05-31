@@ -70,3 +70,6 @@ Testing/
 
 # text files
 *.txt
+
+# google test
+google/
