@@ -64,3 +64,15 @@ void UrlFinder::nuskaitymas(const string& failas)
         }
     }
 }
+void UrlFinder::isvedimas(const string& failas)
+{
+    ofstream fd(failas);
+    if(!fd.is_open())
+    {cout << " Nepavyko atidaryti failo: " << failas << endl;
+    return;
+    }
+    for(const auto& url : urls)
+    {
+        fd << url << endl;
+    }
+}
