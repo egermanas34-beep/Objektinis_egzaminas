@@ -71,6 +71,8 @@ void UrlFinder::isvedimas(const string& failas)
     {cout << " Nepavyko atidaryti failo: " << failas << endl;
     return;
     }
+    fd << "Rasti URL adresai:" << endl;
+    fd<<"-------------------" << endl;
     for(const auto& url : urls)
     {
         fd << url << endl;
