@@ -46,3 +46,21 @@ string UrlFinder::sutvarkytiURL(const string& zodis)
     }
     return sutvarkytasURL;
 }
+void UrlFinder::nuskaitymas(const string& failas)
+{
+    ifstream fr(failas);
+    if(!fr.is_open())
+    {
+        cout << "Nepavyko atidaryti failo: " << failas << std::endl;
+        return;
+    }
+    string eilute;
+    while(fr >> eilute)
+    {
+        string url = sutvarkytiURL(eilute);
+        if(arURL(url))
+        {
+            urls.insert(url);
+        }
+    }
+}
