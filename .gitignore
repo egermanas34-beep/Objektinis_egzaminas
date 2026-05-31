@@ -52,7 +52,7 @@ Makefile
 install_manifest.txt
 compile_commands.json
 CMakeLists.txt
-
+testai/CMakeLists.txt
 # Temporary files
 *.tmp
 *.log
