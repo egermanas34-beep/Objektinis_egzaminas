@@ -1,5 +1,6 @@
 #include "word.h"
 #include "wordcounter.h"
+#include "urlfinder.h"
 #include "funkcijos.h"
 #include "windows.h"
 int main()
@@ -12,5 +13,8 @@ int main()
     WordCounter wc;
     wc.nuskaitymas("tekstas.txt");
     wc.isvedimas("rezultatai.txt");
+    UrlFinder uf;
+    uf.nuskaitymas("tekstas2.txt");
+    uf.isvedimas("rezultatai2.txt");
     return 0;
 }
