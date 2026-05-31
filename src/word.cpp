@@ -39,9 +39,9 @@ Word::Word(Word&& zodis)
     word = std::move(zodis.word);
     count = zodis.count;
     sakiniai = std::move(zodis.sakiniai);
-    word.clear();
-    count = 0;
-    sakiniai.clear();
+    zodis.word.clear();
+    zodis.count = 0;
+    zodis.sakiniai.clear();
 }
 Word& Word::operator=(Word&& zodis)
 {
@@ -50,9 +50,9 @@ Word& Word::operator=(Word&& zodis)
         word = std::move(zodis.word);
         count = zodis.count;
         sakiniai = std::move(zodis.sakiniai);
-        word.clear();
-        count = 0;
-        sakiniai.clear();
+        zodis.word.clear();
+        zodis.count = 0;
+        zodis.sakiniai.clear();
     
     return *this;
 }
