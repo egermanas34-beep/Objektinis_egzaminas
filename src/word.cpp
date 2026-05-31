@@ -64,11 +64,11 @@ Word::~Word()
 }
 std::ostream& operator<<(std::ostream& os, const Word& zodis)
 {
-    os << zodis.getWord() << " (" << zodis.getCount() << ")" << " : ";
+    os << std::left << std::setw(25) << zodis.getWord()<<std::left << std::setw(10) << zodis.getCount();
     for (const auto& sakinys : zodis.getSakiniai())
     {
         os << sakinys << " ";
     }
-    os << "\n";
+    os << endl;
     return os;
 }

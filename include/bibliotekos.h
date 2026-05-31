@@ -7,6 +7,7 @@
 #include <sstream>
 #include <cctype>
 #include <set>
+#include <iomanip>
 using std::string;
 using std::map;
 using std::isalpha;

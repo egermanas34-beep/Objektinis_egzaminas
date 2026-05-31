@@ -84,11 +84,12 @@ void WordCounter::isvedimas(const string& failas)
         cout << "Nepavyko atidaryti failo: " << failas << std::endl;
         return;
     }
+    fd << std::left << std::setw(25) << "Zodis" << std::setw(10) << "Kiekis" << "Sakiniai" << endl;
     for(const auto& pora : zodziai)
     {
         if(pora.second.getCount() > 1)
         {
-            fd << pora.second << endl;
+            fd << pora.second;
         }
     }
     fd.close();
