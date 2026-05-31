@@ -2,14 +2,14 @@
 #include "word.h"
 #include "wordcounter.h"
 #include "urlfinder.h"
-TEST(WordTest, ConstructorAndGetters)
+TEST(Testai, ConstructorAndGetters)
 {
     Word zodis("testas", 3, 1);
     EXPECT_EQ(zodis.getWord(), "testas");
     EXPECT_EQ(zodis.getCount(), 3);
     EXPECT_TRUE(zodis.getSakiniai().count(1) > 0);
 }
-TEST(WordTest, CopyConstructor)
+TEST(Testai, CopyConstructor)
 {
     Word zodis1("testas", 3, 1);
     Word zodis2(zodis1);
@@ -17,7 +17,7 @@ TEST(WordTest, CopyConstructor)
     EXPECT_EQ(zodis2.getCount(), 3);
     EXPECT_TRUE(zodis2.getSakiniai().count(1) > 0);
 }
-TEST(WordTest, MoveConstructor)
+TEST(Testai, MoveConstructor)
 {
     Word zodis1("testas", 3, 1);
     Word zodis2(std::move(zodis1));
@@ -25,7 +25,7 @@ TEST(WordTest, MoveConstructor)
     EXPECT_EQ(zodis2.getCount(), 3);
     EXPECT_TRUE(zodis2.getSakiniai().count(1) > 0);
 }
-TEST(WordTest, CopyAssignment)
+TEST(Testai, CopyAssignment)
 {
     Word zodis1("testas", 3, 1);
     Word zodis2;
@@ -34,7 +34,7 @@ TEST(WordTest, CopyAssignment)
     EXPECT_EQ(zodis2.getCount(), 3);
     EXPECT_TRUE(zodis2.getSakiniai().count(1) > 0);
 }
-TEST(WordTest, MoveAssignment)
+TEST(Testai, MoveAssignment)
 {
     Word zodis1("testas", 3, 1);
     Word zodis2;
@@ -43,7 +43,7 @@ TEST(WordTest, MoveAssignment)
     EXPECT_EQ(zodis2.getCount(), 3);
     EXPECT_TRUE(zodis2.getSakiniai().count(1) > 0);
 }
-TEST(UrlFinderTest, ArURL)
+TEST(Testai, ArURL)
 {
     UrlFinder uf;
     EXPECT_TRUE(uf.arURL("https://example.com"));
@@ -55,7 +55,7 @@ TEST(UrlFinderTest, ArURL)
     EXPECT_TRUE(uf.arURL("example.org"));
     EXPECT_FALSE(uf.arURL("not_a_url"));
 }
-TEST(UrlFinderTest, SutvarkytiURL)
+TEST(Testai, SutvarkytiURL)
 {
     UrlFinder uf;
     EXPECT_EQ(uf.sutvarkytiURL("https://example.com."), "https://example.com");
