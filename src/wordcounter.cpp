@@ -49,19 +49,30 @@ void WordCounter::nuskaitymas(const string& failas)
         return;
     }
     string eilute;
+    int sakinioNumeris = 1;
     while(fr >> eilute)
     {
+        bool sakinioPabaiga = false;
+            if(eilute.find('.') != string::npos || eilute.find('!') != string::npos || eilute.find('?') != string::npos)
+            {
+                sakinioPabaiga = true;
+            }
+
         string tuscia = arZodis(eilute);
-        if (tuscia.empty()) continue;
+        if (tuscia.empty()) {if(sakinioPabaiga) sakinioNumeris++; continue;}
 
         if (zodziai.find(tuscia) == zodziai.end())
-        {
-            zodziai.insert({tuscia, Word(tuscia, 1)});//pridedama i zozdiu zemelapi zodzio reiksme ir count 1. zodzio reiksme
+        {  
+            Word naujasZodis(tuscia, 1);
+            naujasZodis.pridetiSakini(sakinioNumeris);
+            zodziai.insert({tuscia, naujasZodis});//pridedama i zozdiu zemelapi zodzio reiksme ir count 1. zodzio reiksme
         } else {
             //jei zodis jau yra, tai padidiname count reiksme
             zodziai[tuscia].setWord(tuscia);
             zodziai[tuscia].didintiCount();
+            zodziai[tuscia].pridetiSakini(sakinioNumeris);
         }
+        if(sakinioPabaiga) sakinioNumeris++;
     }
     fr.close();
 }

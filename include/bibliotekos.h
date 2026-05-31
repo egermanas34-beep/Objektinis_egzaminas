@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <sstream>
 #include <cctype>
-
+#include <set>
 using std::string;
 using std::map;
 using std::isalpha;

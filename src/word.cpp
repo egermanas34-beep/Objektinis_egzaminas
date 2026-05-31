@@ -12,10 +12,17 @@ Word::Word(const string& word, int count)
     this->word = word;
     this->count = count;
 }
+Word::Word(const string& word, int count, int sakinys)
+{
+    this->word = word;
+    this->count = count;
+    this->sakiniai.insert(sakinys);
+}
 Word::Word(const Word&zodis)
 {
     word = zodis.word;
     count = zodis.count;
+    sakiniai = zodis.sakiniai;
 }
 Word& Word::operator=(const Word& zodis)
 {
@@ -23,6 +30,7 @@ Word& Word::operator=(const Word& zodis)
     return *this;
         word = zodis.word;
         count = zodis.count;
+        sakiniai = zodis.sakiniai;
     
     return *this;
 }
@@ -30,8 +38,10 @@ Word::Word(Word&& zodis)
 {
     word = std::move(zodis.word);
     count = zodis.count;
+    sakiniai = std::move(zodis.sakiniai);
     word.clear();
     count = 0;
+    sakiniai.clear();
 }
 Word& Word::operator=(Word&& zodis)
 {
@@ -39,8 +49,10 @@ Word& Word::operator=(Word&& zodis)
     return *this;
         word = std::move(zodis.word);
         count = zodis.count;
+        sakiniai = std::move(zodis.sakiniai);
         word.clear();
         count = 0;
+        sakiniai.clear();
     
     return *this;
 }
@@ -48,9 +60,15 @@ Word::~Word()
 {
     word.clear();
     count = 0;
+    sakiniai.clear();
 }
 std::ostream& operator<<(std::ostream& os, const Word& zodis)
 {
-    os << zodis.getWord() << ": " << zodis.getCount();
+    os << zodis.getWord() << " (" << zodis.getCount() << ")" << " : ";
+    for (const auto& sakinys : zodis.getSakiniai())
+    {
+        os << sakinys << " ";
+    }
+    os << "\n";
     return os;
 }

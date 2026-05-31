@@ -7,9 +7,11 @@ class Word
     private:
         string word;
         int count;
+        std::set<int> sakiniai;
     public:
     Word();
     Word(const string& word, int count);
+    Word(const string& word, int count, int sakinys);
     Word(const Word& zodis);
     Word& operator=(const Word& zodis);
     Word(Word&& zodis);
@@ -21,5 +23,7 @@ class Word
     void setCount(int count) {this->count = count;};
     
     void didintiCount() {this->count++;};
+    void pridetiSakini(int sakinioNumeris) {sakiniai.insert(sakinioNumeris);};
+    const std::set<int>& getSakiniai() const {return sakiniai;};
     friend std::ostream& operator<<(std::ostream& os, const Word& zodis);
 };
