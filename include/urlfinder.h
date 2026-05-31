@@ -5,11 +5,12 @@ class UrlFinder
 {
     private:
     set<string> urls;
-    bool arURL(const string& zodis);
-    string sutvarkytiURL(const string& zodis);
+    
     public:
+     bool arURL(const string& zodis);
+    string sutvarkytiURL(const string& zodis);
     void nuskaitymas(const string& failas);
     void isvedimas(const string& failas);
-    
+
 
 };
