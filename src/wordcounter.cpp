@@ -1,45 +1,25 @@
 #include "wordcounter.h"
-string WordCounter::arZodis(const string& zodis)//! funkcija, kuri patikrina ar zodis yra zodis, o ne skyrybos zenklas
+
+bool WordCounter::arSkyryba(char c)
+{
+    string skyryba = ".,!?;:\"'()[]{}-_<>/\\|@#$%^&*~`"; //! skyrybos zenklai, kuriuos norime ignoruoti
+    return skyryba.find(c) != string::npos;
+};
+string WordCounter::arZodis(const string& zodis)
 {
     string rezultatas;
-    for (size_t i = 0; i < zodis.size(); ) //! iteruojame per zodzio simbolius, bet ne kiekviena baitą, o visą simbolį (daugiabaitiai UTF-8)
+
+    for (unsigned char c : zodis)
     {
-        unsigned char c = zodis[i];
-
-        //! Daugiabaitiai UTF-8 simboliai (skyrybos ženklai kaip „ " – —)
-        if (c >= 0x80) //! UTF-8 simbolis prasideda, jei baitas yra 128 ar didesnis
-        {
-            //! Nustatome kiek baitų užima šis simbolis
-            int baitai = 1;
-            if      (c >= 0xF0) baitai = 4; //! 4 baitų simboliai (retai naudojami, bet gali būti)
-            else if (c >= 0xE0) baitai = 3; //! 3 baitų simboliai (dažniausiai lietuviškos raidės)
-            else if (c >= 0xC0) baitai = 2; //! 2 baitų simboliai (dažniausiai lietuviškos raidės)
-
-            //! Surenkame visą simbolį
-            string simbolis = zodis.substr(i, baitai);
-
-            //! Lietuviškos raidės prasideda nuo 0xC3 arba 0xC5
-            if (c == 0xC3 || c == 0xC5) {
-                //! Tai lietuviška raidė – paliekame
-                for (char ch : simbolis) rezultatas += ch;
+            if (isupper(c)) {
+                c = tolower(c); //! konvertuojame didziasias raides i mazasias
             }
-            //! Kiti daugiabaitiai – skyrybos ženklai, praleidžiame
-            i += baitai;
-            continue;
+        if (!arSkyryba(c))
+        {
+            rezultatas += c;
         }
-
-        //! ASCII skyrybos ženklai
-        if (c == '.' || c == ',' || c == '!' || c == '?' ||
-            c == ';' || c == ':' || c == '-' || c == '"' ||
-            c == '(' || c == ')' || c == '\'') {
-            i++;
-            continue;
-        }
-
-        //! Paprastos ASCII raidės
-        rezultatas += (char)tolower(c);
-        i++;
     }
+   
     return rezultatas;
 }
 void WordCounter::nuskaitymas(const string& failas) //! funkcija, kuri skaito faila ir skaiciuoja zodzius, ju kieki ir sakinius, kuriuose jie yra
@@ -78,7 +58,23 @@ void WordCounter::nuskaitymas(const string& failas) //! funkcija, kuri skaito fa
     }
     fr.close();
 }
-void WordCounter::isvedimas(const string& failas) //! funkcija, kuri isveda zodzius, ju kieki ir sakinius, kuriuose jie yra i faila
+void WordCounter::isvedimas(const string& failas) //! funkcija, kuri isveda zodzius ir ju kieki i faila
+{
+    ofstream fd(failas);
+    if(!fd.is_open())
+    {
+        cout << "Nepavyko atidaryti failo: " << failas << std::endl;
+        return;
+    }
+    fd << std::left << std::setw(25) << "Zodis" << "Kiekis" << endl;
+    for(const auto& pora : zodziai)
+    {
+        if(pora.second.getCount() > 1) //! isvedame tik tuos zodzius, kurie yra daugiau nei 1 karta
+        fd << std::left << std::setw(25) << pora.second.getWord() << pora.second.getCount() << endl;
+    }
+    fd.close();
+}
+void WordCounter::isvedimasCrossReference(const string& failas) //! funkcija, kuri isveda zodzius, ju kieki ir sakinius, kuriuose jie yra i faila
 {
     ofstream fd(failas);
     if(!fd.is_open())
@@ -87,6 +83,7 @@ void WordCounter::isvedimas(const string& failas) //! funkcija, kuri isveda zodz
         return;
     }
     fd << std::left << std::setw(25) << "Zodis" << std::setw(10) << "Kiekis" << "Sakiniai" << endl;
+    fd<< std::string(60, '-') << endl;
     for(const auto& pora : zodziai)
     {
         if(pora.second.getCount() > 1)

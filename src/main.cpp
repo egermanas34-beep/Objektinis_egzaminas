@@ -11,7 +11,12 @@ int main()
     WordCounter wc;
     UrlFinder uf;
     
-    cout<< " Ka jus norite padaryti? \n 1. Rasti zodzius ir ju skaiciu tekste \n 2. Rasti URL adresus tekste \n";
+        wc.nuskaitymas("tekstas.txt");
+        wc.isvedimas("zodziuKiekis.txt");
+        wc.isvedimasCrossReference("rezultatai_cross_reference.txt");
+        uf.nuskaitymas("tekstas2.txt");
+        uf.isvedimas("URL.txt");
+    /*cout<< " Ka jus norite padaryti? \n 1. Rasti zodzius ir ju skaiciu tekste \n 2. Rasti URL adresus tekste \n";
     int pasirinkimas;
     std::cin >> pasirinkimas;
     switch(pasirinkimas)
@@ -26,7 +31,7 @@ int main()
             break;
         default:
             cout << "Neteisingas pasirinkimas. Programa baigiama." << endl;
-    }
+    }*/
     cout<<"Programa baigta. Rezultatai issaugoti atitinkamuose failuose."<<endl;
     cout<<"Paspauskite Enter, kad uzdarytumete programa..."<<endl;
     std::cin.ignore();
